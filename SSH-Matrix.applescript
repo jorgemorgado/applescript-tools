@@ -44,7 +44,7 @@ on __matrix_size(nrTerminals, maxRows, maxCols)
 	repeat until c is maxCols + 1
 		set r to 1
 		repeat until r is maxRows + 1
-			if c * r ³ nrTerminals then
+			if c * r is greater than or equal to nrTerminals then
 				return {r, c}
 			end if
 			
@@ -77,19 +77,19 @@ set listServers to my __split(answerServers, linefeed)
 set sizeListServers to count of listServers
 
 -- Pre-define some iTerm matrix sizes based on the amount of servers
-if sizeListServers ² 2 then
+if sizeListServers is less than or equal to 2 then
 	set MAX_COLS to 2
 	set MAX_ROWS to 1
-else if sizeListServers ² 6 then
+else if sizeListServers is less than or equal to 6 then
 	set MAX_COLS to 2
 	set MAX_ROWS to 3
-else if sizeListServers ² 9 then
+else if sizeListServers is less than or equal to 9 then
 	set MAX_COLS to 3
 	set MAX_ROWS to 3
-else if sizeListServers ² 16 then
+else if sizeListServers is less than or equal to 16 then
 	set MAX_COLS to 4
 	set MAX_ROWS to 4
-else if sizeListServers ² 25 then
+else if sizeListServers is less than or equal to 25 then
 	set MAX_COLS to 5
 	set MAX_ROWS to 5
 else
@@ -218,7 +218,7 @@ tell application "iTerm"
 			set sessionID1 to sessionID1 + calibration_value
 			set sessionID2 to sessionID1 + rowsMatrix
 			
-			if sessionID1 ² sizeListServers then
+			if sessionID1 is less than or equal to sizeListServers then
 				tell session sessionID1 of current tab of current_window
 					set serverName to item n of listServers
 					-- write text "echo " & serverName
@@ -228,7 +228,7 @@ tell application "iTerm"
 				set n to n + 1
 			end if
 			
-			if sessionID2 ² sizeListServers then
+			if sessionID2 is less than or equal to sizeListServers then
 				tell session sessionID2 of current tab of current_window
 					set serverName to item n of listServers
 					-- write text "echo " & serverName
